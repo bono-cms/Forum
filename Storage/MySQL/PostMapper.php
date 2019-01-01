@@ -12,8 +12,9 @@
 namespace Forum\Storage\MySQL;
 
 use Cms\Storage\MySQL\AbstractMapper;
+use Forum\Storage\PostMapperInterface;
 
-final class PostMapper extends AbstractMapper
+final class PostMapper extends AbstractMapper implements PostMapperInterface
 {
     /**
      * {@inheritDoc}

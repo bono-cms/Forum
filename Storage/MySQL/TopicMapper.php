@@ -12,8 +12,9 @@
 namespace Forum\Storage\MySQL;
 
 use Cms\Storage\MySQL\AbstractMapper;
+use Forum\Storage\TopicMapperInterface;
 
-final class TopicMapper extends AbstractMapper
+final class TopicMapper extends AbstractMapper implements TopicMapperInterface
 {
     /**
      * {@inheritDoc}

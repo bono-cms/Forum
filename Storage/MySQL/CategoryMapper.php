@@ -12,8 +12,9 @@
 namespace Forum\Storage\MySQL;
 
 use Cms\Storage\MySQL\AbstractMapper;
+use Forum\Storage\CategoryMapperInterface;
 
-final class CategoryMapper extends AbstractMapper
+final class CategoryMapper extends AbstractMapper implements CategoryMapperInterface
 {
     /**
      * {@inheritDoc}
