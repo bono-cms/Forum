@@ -12,6 +12,9 @@
 namespace Forum;
 
 use Cms\AbstractCmsModule;
+use Forum\Service\TopicService;
+use Forum\Service\PostService;
+use Forum\Service\CategoryService;
 
 final class Module extends AbstractCmsModule
 {
@@ -21,6 +24,9 @@ final class Module extends AbstractCmsModule
     public function getServiceProviders()
     {
         return array(
+            'topicService' => new TopicService($this->getMapper('\Forum\Storage\MySQL\TopicMapper')),
+            'postService' => new PostService($this->getMapper('\Forum\Storage\MySQL\PostMapper')),
+            'categoryService' => new CategoryService($this->getMapper('\Forum\Storage\MySQL\CategoryMapper'))
         );
     }
 }
