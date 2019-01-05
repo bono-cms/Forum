@@ -11,6 +11,7 @@
 
 namespace Forum\Service;
 
+use Krystal\Stdlib\ArrayUtils;
 use Krystal\Stdlib\VirtualEntity;
 use Cms\Service\AbstractManager;
 use Forum\Storage\CategoryMapperInterface;
@@ -77,6 +78,16 @@ final class CategoryService extends AbstractManager
     public function fetchAll()
     {
         return $this->prepareResults($this->categoryMapper->fetchAll());
+    }
+
+    /**
+     * Fetch categories as a hash map
+     * 
+     * @return array
+     */
+    public function fetchList()
+    {
+        return ArrayUtils::arrayList($this->categoryMapper->fetchAll(), 'id', 'name');
     }
 
     /**
