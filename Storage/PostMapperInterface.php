@@ -13,5 +13,11 @@ namespace Forum\Storage;
 
 interface PostMapperInterface
 {
-    
+    /**
+     * Fetch all posts
+     * 
+     * @param int $topicId
+     * @return array
+     */
+    public function fetchAll($topicId);
 }

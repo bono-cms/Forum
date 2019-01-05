@@ -23,4 +23,21 @@ final class PostMapper extends AbstractMapper implements PostMapperInterface
     {
         return self::getWithPrefix('bono_module_forum_post');
     }
+
+    /**
+     * Fetch all posts
+     * 
+     * @param int $topicId
+     * @return array
+     */
+    public function fetchAll($topicId)
+    {
+        $db = $this->db->select('*')
+                       ->from(self::getTableName())
+                       ->whereEquals('topic_id', $topicId)
+                       ->orderBy('id')
+                       ->desc();
+
+        return $db->queryAll();
+    }
 }
