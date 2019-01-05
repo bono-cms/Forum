@@ -11,6 +11,7 @@
 
 namespace Forum\Service;
 
+use Krystal\Stdlib\VirtualEntity;
 use Cms\Service\AbstractManager;
 use Forum\Storage\CategoryMapperInterface;
 
@@ -32,5 +33,71 @@ final class CategoryService extends AbstractManager
     public function __construct(CategoryMapperInterface $categoryMapper)
     {
         $this->categoryMapper = $categoryMapper;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function toEntity(array $row)
+    {
+        $entity = new VirtualEntity();
+        $entity->setId($row['id'])
+               ->setName($row['name'])
+               ->setOrder($row['order']);
+
+        return $entity;
+    }
+
+    /**
+     * Returns last category ID
+     * 
+     * @return int
+     */
+    public function getLastId()
+    {
+        return $this->categoryMapper->getMaxId();
+    }
+
+    /**
+     * Fetch category by its ID
+     * 
+     * @param int $id Category ID
+     * @return mixed
+     */
+    public function fetchById($id)
+    {
+        return $this->prepareResult($this->categoryMapper->findByPk($id));
+    }
+
+    /**
+     * Fetch all categories
+     * 
+     * @return array
+     */
+    public function fetchAll()
+    {
+        return $this->prepareResults($this->categoryMapper->fetchAll());
+    }
+
+    /**
+     * Deletes category by its ID
+     * 
+     * @param int $id Category ID
+     * @return boolean
+     */
+    public function deleteById($id)
+    {
+        return $this->categoryMapper->deleteByPk($id);
+    }
+
+    /**
+     * Save category
+     * 
+     * @param array $input
+     * @return boolean
+     */
+    public function save(array $input)
+    {
+        return $this->categoryMapper->persist($input);
     }
 }
