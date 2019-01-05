@@ -26,5 +26,22 @@ return array(
 
     '/%s/module/forum/category/save' => array(
         'controller' => 'Admin:Category@saveAction'
+    ),
+
+    // Forum topic
+    '/%s/module/forum/topic/add' => array(
+        'controller' => 'Admin:Topic@addAction'
+    ),
+
+    '/%s/module/forum/topic/edit/(:var)' => array(
+        'controller' => 'Admin:Topic@editAction'
+    ),
+
+    '/%s/module/forum/topic/delete/(:var)' => array(
+        'controller' => 'Admin:Topic@deleteAction'
+    ),
+
+    '/%s/module/forum/topic/save' => array(
+        'controller' => 'Admin:Topic@saveAction'
     )
 );
