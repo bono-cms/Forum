@@ -23,4 +23,21 @@ final class TopicMapper extends AbstractMapper implements TopicMapperInterface
     {
         return self::getWithPrefix('bono_module_forum_topic');
     }
+
+    /**
+     * Fetch all topics filtered by category ID
+     * 
+     * @param int $categoryId
+     * @return array
+     */
+    public function fetchAll($categoryId)
+    {
+        $db = $this->db->select('*')
+                       ->from(self::getTableName())
+                       ->whereEquals('category_id', $categoryId)
+                       ->orderBy('id')
+                       ->desc();
+
+        return $db->queryAll();
+    }
 }

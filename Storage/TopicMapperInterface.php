@@ -13,5 +13,11 @@ namespace Forum\Storage;
 
 interface TopicMapperInterface
 {
-    
+    /**
+     * Fetch all topics filtered by category ID
+     * 
+     * @param int $categoryId
+     * @return array
+     */
+    public function fetchAll($categoryId);
 }
