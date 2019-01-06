@@ -46,6 +46,10 @@ final class CategoryService extends AbstractManager
                ->setName($row['name'])
                ->setOrder($row['order']);
 
+        if (isset($row['topic_count'])) {
+            $entity->setTopicCount($row['topic_count']);
+        }
+
         return $entity;
     }
 

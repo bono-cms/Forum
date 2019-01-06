@@ -31,9 +31,21 @@ final class CategoryMapper extends AbstractMapper implements CategoryMapperInter
      */
     public function fetchAll()
     {
-        $db = $this->db->select('*')
+        // To be selected
+        $columns = array(
+            self::column('id'),
+            self::column('name'),
+            self::column('order')
+        );
+
+        $db = $this->db->select($columns)
+                       ->count(TopicMapper::column('id'), 'topic_count')
                        ->from(self::getTableName())
-                       ->orderBy('id')
+                       // Topic relation
+                       ->leftJoin(TopicMapper::getTableName(), array(
+                            TopicMapper::column('category_id') => self::getRawColumn('id')
+                       ))
+                       ->orderBy(self::column('id'))
                        ->desc();
 
         return $db->queryAll();
