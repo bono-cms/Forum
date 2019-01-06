@@ -32,8 +32,21 @@ final class TopicMapper extends AbstractMapper implements TopicMapperInterface
      */
     public function fetchAll($categoryId = null)
     {
-        $db = $this->db->select('*')
-                       ->from(self::getTableName());
+        // Columns to be selected
+        $columns = array(
+            self::column('id'),
+            self::column('category_id'),
+            self::column('name'),
+            self::column('order')
+        );
+
+        $db = $this->db->select($columns)
+                       ->count(PostMapper::column('id'), 'post_count')
+                       ->from(self::getTableName())
+                       // Post relation
+                       ->leftJoin(PostMapper::getTableName(), array(
+                            PostMapper::column('topic_id') => self::getRawColumn('id')
+                       ));
 
         // If explicit category ID provided, then use it
         if ($categoryId !== null) {

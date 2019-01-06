@@ -46,6 +46,10 @@ final class TopicService extends AbstractManager
                ->setName($row['name'])
                ->setOrder($row['order']);
 
+        if (isset($row['post_count'])) {
+            $entity->setPostCount($row['post_count']);
+        }
+
         return $entity;
     }
 
