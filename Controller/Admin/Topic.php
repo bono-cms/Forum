@@ -27,7 +27,7 @@ final class Topic extends AbstractController
         $new = !$topic->getId();
 
         // Append breadcrumbs
-        $this->view->getBreadcrumbBag()->addOne('Forum')
+        $this->view->getBreadcrumbBag()->addOne('Forum', 'Forum:Admin:Browser@indexAction')
                                        ->addOne($new ? 'Add new topic' : 'Edit the topic');
 
         return $this->view->render('topic.form', array(

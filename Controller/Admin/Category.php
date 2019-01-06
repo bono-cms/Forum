@@ -27,7 +27,7 @@ final class Category extends AbstractController
         $new = !$category->getId();
 
         // Append breadcrumbs
-        $this->view->getBreadcrumbBag()->addOne('Forum')
+        $this->view->getBreadcrumbBag()->addOne('Forum', 'Forum:Admin:Browser@indexAction')
                                        ->addOne($new ? 'Add new category' : 'Edit the category');
 
         return $this->view->render('category.form', array(
