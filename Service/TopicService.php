@@ -72,10 +72,10 @@ final class TopicService extends AbstractManager
     /**
      * Fetch all topics
      * 
-     * @param int $categoryId
+     * @param int $categoryId Optional category ID constraint
      * @return array
      */
-    public function fetchAll($categoryId)
+    public function fetchAll($categoryId = null)
     {
         return $this->prepareResults($this->topicMapper->fetchAll($categoryId));
     }

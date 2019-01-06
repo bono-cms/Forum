@@ -16,8 +16,8 @@ interface TopicMapperInterface
     /**
      * Fetch all topics filtered by category ID
      * 
-     * @param int $categoryId
+     * @param int $categoryId Optional category ID constraint
      * @return array
      */
-    public function fetchAll($categoryId);
+    public function fetchAll($categoryId = null);
 }

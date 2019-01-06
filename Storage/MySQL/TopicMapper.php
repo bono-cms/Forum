@@ -27,16 +27,21 @@ final class TopicMapper extends AbstractMapper implements TopicMapperInterface
     /**
      * Fetch all topics filtered by category ID
      * 
-     * @param int $categoryId
+     * @param int $categoryId Optional category ID constraint
      * @return array
      */
-    public function fetchAll($categoryId)
+    public function fetchAll($categoryId = null)
     {
         $db = $this->db->select('*')
-                       ->from(self::getTableName())
-                       ->whereEquals('category_id', $categoryId)
-                       ->orderBy('id')
-                       ->desc();
+                       ->from(self::getTableName());
+
+        // If explicit category ID provided, then use it
+        if ($categoryId !== null) {
+            $db->whereEquals('category_id', $categoryId);
+        }
+
+        $db->orderBy('id')
+           ->desc();
 
         return $db->queryAll();
     }
