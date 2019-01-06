@@ -11,6 +11,10 @@
 
 return array(
 
+    '/%s/module/forum' => array(
+        'controller' => 'Admin:Browser@indexAction'
+    ),
+    
     // Forum category
     '/%s/module/forum/category/add' => array(
         'controller' => 'Admin:Category@addAction'
