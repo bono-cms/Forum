@@ -1,0 +1,102 @@
+<?php
+
+use Krystal\Form\Element;
+use Krystal\Grid\Grid;
+use Cms\View\Icon;
+
+defined('KRYSTAL') or die;
+
+?>
+
+<div class="row">
+    <div class="col-lg-7">
+        <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
+
+        <?= Grid::render($topics, array(
+            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
+            'columns' => array(
+                array(
+                    'column' => 'id',
+                    'label' => '#'
+                ),
+
+                array(
+                    'column' => 'name'
+                ),
+
+                array(
+                    'column' => 'order',
+                )
+            ),
+
+            'actions' => array(
+                'edit' => function($topic){
+                    return Icon::edit(
+                        $this->url('Forum:Admin:Topic@editAction', $topic->getId()),
+                        $this->translate('Edit this topic')
+                    );
+                },
+
+                'remove' => function($topic){
+                    return Icon::remove(
+                        $this->url('Forum:Admin:Topic@deleteAction', $topic->getId()),
+                        $this->translate('Remove this topic')
+                    );
+                }
+            )
+
+        ), $this->translator); ?>
+
+        <?php if (empty($topics)): ?>
+		<div class="center-block">
+            <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No topics'); ?></h2>
+		</div>
+		<?php endif; ?>
+        
+    </div>
+
+    <div class="col-lg-5">
+        <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
+
+        <?= Grid::render($categories, array(
+            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
+            'columns' => array(
+                array(
+                    'column' => 'id',
+                    'label' => '#'
+                ),
+
+                array(
+                    'column' => 'name'
+                ),
+
+                array(
+                    'column' => 'order',
+                )
+            ),
+
+            'actions' => array(
+                'edit' => function($category){
+                    return Icon::edit(
+                        $this->url('Forum:Admin:Category@editAction', $category->getId()),
+                        $this->translate('Edit this category')
+                    );
+                },
+
+                'remove' => function($category){
+                    return Icon::remove(
+                        $this->url('Forum:Admin:Category@deleteAction', $category->getId()),
+                        $this->translate('Remove this category')
+                    );
+                }
+            )
+
+        ), $this->translator); ?>
+
+		<?php if (empty($categories)): ?>
+		<div class="center-block">
+			<h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No categories'); ?></h2>
+		</div>
+		<?php endif; ?>
+    </div>
+</div>
