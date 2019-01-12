@@ -17,7 +17,8 @@ interface PostMapperInterface
      * Fetch all posts
      * 
      * @param int $topicId
+     * @param boolean $sort Whether to apply sorting
      * @return array
      */
-    public function fetchAll($topicId);
+    public function fetchAll($topicId, $sort);
 }
