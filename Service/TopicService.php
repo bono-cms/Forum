@@ -11,6 +11,7 @@
 
 namespace Forum\Service;
 
+use Krystal\Stdlib\ArrayUtils;
 use Krystal\Stdlib\VirtualEntity;
 use Cms\Service\AbstractManager;
 use Forum\Storage\TopicMapperInterface;
@@ -82,6 +83,17 @@ final class TopicService extends AbstractManager
     public function fetchAll($categoryId = null)
     {
         return $this->prepareResults($this->topicMapper->fetchAll($categoryId));
+    }
+
+    /**
+     * Fetch topics as a hash map
+     * 
+     * @param int $categoryId Optional category ID constraint
+     * @return array
+     */
+    public function fetchList($categoryId = null)
+    {
+        return ArrayUtils::arrayList($this->topicMapper->fetchAll($categoryId), 'id', 'name');
     }
 
     /**
