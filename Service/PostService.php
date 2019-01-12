@@ -100,6 +100,6 @@ final class PostService extends AbstractManager
      */
     public function save(array $input)
     {
-        return $this->postMapper->save($input);
+        return $this->postMapper->persist($input);
     }
 }
