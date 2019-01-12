@@ -8,6 +8,11 @@ defined('KRYSTAL') or die;
 
 ?>
 
+<p>
+    <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Category@addAction'); ?>"><?php $this->show('Add category'); ?></a>
+    <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Topic@addAction'); ?>"><?php $this->show('Add new topic'); ?></a>
+</p>
+
 <div class="row">
     <div class="col-lg-7">
         <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
