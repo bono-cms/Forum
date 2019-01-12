@@ -43,6 +43,7 @@ final class PostService extends AbstractManager
         $entity = new VirtualEntity();
         $entity->setId($row['id'])
                ->setTopicId($row['topic_id'])
+               ->setOrder($row['order'])
                ->setTitle($row['title'])
                ->setContent($row['content']);
 

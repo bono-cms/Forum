@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `bono_module_forum_post`;
 CREATE TABLE `bono_module_forum_post` (
     `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Post ID',
     `topic_id` INT NOT NULL COMMENT 'Attached topic ID',
+    `order` INT NOT NULL COMMENT 'Sorting order',
     `title` varchar(255) NOT NULL COMMENT 'Post title',
     `content` LONGTEXT NOT NULL COMMENT 'Post content',
 
