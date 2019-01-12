@@ -34,6 +34,13 @@ defined('KRYSTAL') or die;
             ),
 
             'actions' => array(
+                'details' => function($topic){
+                    return Icon::details(
+                        $this->url('Forum:Admin:Post@indexAction', $topic->getId()),
+                        $this->translate('View posts')
+                    );
+                },
+
                 'edit' => function($topic){
                     return Icon::edit(
                         $this->url('Forum:Admin:Topic@editAction', $topic->getId()),
