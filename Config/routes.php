@@ -47,5 +47,26 @@ return array(
 
     '/%s/module/forum/topic/save' => array(
         'controller' => 'Admin:Topic@saveAction'
+    ),
+
+    // Forum posts
+    '/%s/module/forum/post/index/(:var)' => array(
+        'controller' => 'Admin:Post@indexAction'
+    ),
+
+    '/%s/module/forum/post/add/(:var)' => array(
+        'controller' => 'Admin:Post@addAction'
+    ),
+
+    '/%s/module/forum/post/edit/(:var)' => array(
+        'controller' => 'Admin:Post@editAction'
+    ),
+
+    '/%s/module/forum/post/delete/(:var)' => array(
+        'controller' => 'Admin:Post@deleteAction'
+    ),
+
+    '/%s/module/forum/post/save' => array(
+        'controller' => 'Admin:Post@saveAction'
     )
 );
