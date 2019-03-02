@@ -1,7 +1,7 @@
 <?php
 
 use Krystal\Form\Element;
-use Krystal\Grid\Grid;
+use Krystal\Widget\GridWidget;
 use Cms\View\Icon;
 
 defined('KRYSTAL') or die;
@@ -17,7 +17,7 @@ defined('KRYSTAL') or die;
     <div class="col-lg-7">
         <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
 
-        <?= Grid::render($topics, array(
+        <?= $this->widget(new GridWidget($topics, array(
             'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
             'columns' => array(
                 array(
@@ -60,21 +60,19 @@ defined('KRYSTAL') or die;
                     );
                 }
             )
-
-        ), $this->translator); ?>
+        ))); ?>
 
         <?php if (empty($topics)): ?>
 		<div class="center-block">
             <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No topics'); ?></h2>
 		</div>
 		<?php endif; ?>
-        
     </div>
 
     <div class="col-lg-5">
         <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
 
-        <?= Grid::render($categories, array(
+        <?= $this->widget(new GridWidget($categories, array(
             'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
             'columns' => array(
                 array(
@@ -110,8 +108,7 @@ defined('KRYSTAL') or die;
                     );
                 }
             )
-
-        ), $this->translator); ?>
+        ))); ?>
 
 		<?php if (empty($categories)): ?>
 		<div class="center-block">
