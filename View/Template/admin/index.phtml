@@ -1,7 +1,7 @@
 <?php
 
 use Krystal\Form\Element;
-use Krystal\Widget\GridWidget;
+use Krystal\Widget\GridView\GridViewWidget;
 use Cms\View\Icon;
 
 defined('KRYSTAL') or die;
@@ -17,7 +17,7 @@ defined('KRYSTAL') or die;
     <div class="col-lg-7">
         <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
 
-        <?= $this->widget(new GridWidget($topics, array(
+        <?= $this->widget(new GridViewWidget($topics, array(
             'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
             'columns' => array(
                 array(
@@ -72,7 +72,7 @@ defined('KRYSTAL') or die;
     <div class="col-lg-5">
         <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
 
-        <?= $this->widget(new GridWidget($categories, array(
+        <?= $this->widget(new GridViewWidget($categories, array(
             'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
             'columns' => array(
                 array(

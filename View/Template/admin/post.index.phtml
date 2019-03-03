@@ -1,7 +1,7 @@
 <?php
 
 use Krystal\Form\Element;
-use Krystal\Widget\GridWidget;
+use Krystal\Widget\GridView\GridViewWidget;
 use Cms\View\Icon;
 
 defined('KRYSTAL') or die;
@@ -13,7 +13,7 @@ defined('KRYSTAL') or die;
 <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Post@addAction', $topicId); ?>"><?php $this->show('Add new post'); ?></a>
 
 <div class="table-responsive">
-    <?= $this->widget(new GridWidget($posts, array(
+    <?= $this->widget(new GridViewWidget($posts, array(
         'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
         'columns' => array(
             array(
