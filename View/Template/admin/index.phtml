@@ -15,105 +15,109 @@ defined('KRYSTAL') or die;
 
 <div class="row">
     <div class="col-lg-7">
-        <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
+        <div class="card">
+            <h2><?php $this->show('Topics'); ?> <small>(<?= count($topics); ?>)</small></h2>
 
-        <?= $this->widget(new GridViewWidget($topics, array(
-            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
-            'columns' => array(
-                array(
-                    'column' => 'id',
-                    'label' => '#'
+            <?= $this->widget(new GridViewWidget($topics, array(
+                'tableClass' => 'table table-hover table-bordered table-striped table-sm',
+                'columns' => array(
+                    array(
+                        'column' => 'id',
+                        'label' => '#'
+                    ),
+
+                    array(
+                        'column' => 'name'
+                    ),
+
+                    array(
+                        'column' => 'post_count'
+                    ),
+
+                    array(
+                        'column' => 'order',
+                    )
                 ),
 
-                array(
-                    'column' => 'name'
-                ),
+                'actions' => array(
+                    'details' => function($topic){
+                        return Icon::details(
+                            $this->url('Forum:Admin:Post@indexAction', $topic->getId()),
+                            $this->translate('View posts')
+                        );
+                    },
 
-                array(
-                    'column' => 'post_count'
-                ),
+                    'edit' => function($topic){
+                        return Icon::edit(
+                            $this->url('Forum:Admin:Topic@editAction', $topic->getId()),
+                            $this->translate('Edit this topic')
+                        );
+                    },
 
-                array(
-                    'column' => 'order',
+                    'remove' => function($topic){
+                        return Icon::remove(
+                            $this->url('Forum:Admin:Topic@deleteAction', $topic->getId()),
+                            $this->translate('Remove this topic')
+                        );
+                    }
                 )
-            ),
+            ))); ?>
 
-            'actions' => array(
-                'details' => function($topic){
-                    return Icon::details(
-                        $this->url('Forum:Admin:Post@indexAction', $topic->getId()),
-                        $this->translate('View posts')
-                    );
-                },
-
-                'edit' => function($topic){
-                    return Icon::edit(
-                        $this->url('Forum:Admin:Topic@editAction', $topic->getId()),
-                        $this->translate('Edit this topic')
-                    );
-                },
-
-                'remove' => function($topic){
-                    return Icon::remove(
-                        $this->url('Forum:Admin:Topic@deleteAction', $topic->getId()),
-                        $this->translate('Remove this topic')
-                    );
-                }
-            )
-        ))); ?>
-
-        <?php if (empty($topics)): ?>
-		<div class="center-block">
-            <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No topics'); ?></h2>
-		</div>
-		<?php endif; ?>
+            <?php if (empty($topics)): ?>
+            <div class="center-block">
+                <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No topics'); ?></h2>
+            </div>
+            <?php endif; ?>
+        </div>
     </div>
 
     <div class="col-lg-5">
-        <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
+        <div class="card">
+            <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
 
-        <?= $this->widget(new GridViewWidget($categories, array(
-            'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
-            'columns' => array(
-                array(
-                    'column' => 'id',
-                    'label' => '#'
+            <?= $this->widget(new GridViewWidget($categories, array(
+                'tableClass' => 'table table-hover table-bordered table-striped',
+                'columns' => array(
+                    array(
+                        'column' => 'id',
+                        'label' => '#'
+                    ),
+
+                    array(
+                        'column' => 'name'
+                    ),
+                    
+                    array(
+                        'column' => 'topic_count'
+                    ),
+
+                    array(
+                        'column' => 'order',
+                    )
                 ),
 
-                array(
-                    'column' => 'name'
-                ),
-                
-                array(
-                    'column' => 'topic_count'
-                ),
+                'actions' => array(
+                    'edit' => function($category){
+                        return Icon::edit(
+                            $this->url('Forum:Admin:Category@editAction', $category->getId()),
+                            $this->translate('Edit this category')
+                        );
+                    },
 
-                array(
-                    'column' => 'order',
+                    'remove' => function($category){
+                        return Icon::remove(
+                            $this->url('Forum:Admin:Category@deleteAction', $category->getId()),
+                            $this->translate('Remove this category')
+                        );
+                    }
                 )
-            ),
+            ))); ?>
 
-            'actions' => array(
-                'edit' => function($category){
-                    return Icon::edit(
-                        $this->url('Forum:Admin:Category@editAction', $category->getId()),
-                        $this->translate('Edit this category')
-                    );
-                },
-
-                'remove' => function($category){
-                    return Icon::remove(
-                        $this->url('Forum:Admin:Category@deleteAction', $category->getId()),
-                        $this->translate('Remove this category')
-                    );
-                }
-            )
-        ))); ?>
-
-		<?php if (empty($categories)): ?>
-		<div class="center-block">
-			<h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No categories'); ?></h2>
-		</div>
-		<?php endif; ?>
+            <?php if (empty($categories)): ?>
+            <div class="center-block">
+                <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No categories'); ?></h2>
+            </div>
+            <?php endif; ?>
+        </div>
     </div>
 </div>

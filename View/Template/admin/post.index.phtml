@@ -7,49 +7,51 @@ use Cms\View\Icon;
 defined('KRYSTAL') or die;
 
 ?>
-
-<h2><?php $this->show('Posts'); ?> <small>(<?= count($posts); ?>)</small></h2>
-
 <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Post@addAction', $topicId); ?>"><?php $this->show('Add new post'); ?></a>
 
-<div class="table-responsive">
-    <?= $this->widget(new GridViewWidget($posts, array(
-        'tableClass' => 'table table-hover table-bordered table-striped table-condensed',
-        'columns' => array(
-            array(
-                'column' => 'id',
-                'label' => '#'
+<div class="card">
+    <h2><?php $this->show('Posts'); ?> <small>(<?= count($posts); ?>)</small></h2>
+
+    <div class="table-responsive">
+        <?= $this->widget(new GridViewWidget($posts, array(
+            'tableClass' => 'table table-hover table-bordered table-striped',
+            'columns' => array(
+                array(
+                    'column' => 'id',
+                    'label' => '#'
+                ),
+
+                array(
+                    'column' => 'title'
+                ),
+
+                array(
+                    'column' => 'order'
+                )
             ),
 
-            array(
-                'column' => 'title'
-            ),
+            'actions' => array(
+                'edit' => function($post){
+                    return Icon::edit(
+                        $this->url('Forum:Admin:Post@editAction', $post->getId()),
+                        $this->translate('Edit this post')
+                    );
+                },
 
-            array(
-                'column' => 'order'
+                'remove' => function($post){
+                    return Icon::remove(
+                        $this->url('Forum:Admin:Post@deleteAction', $post->getId()),
+                        $this->translate('Remove this post')
+                    );
+                }
             )
-        ),
+        ))); ?>
 
-        'actions' => array(
-            'edit' => function($post){
-                return Icon::edit(
-                    $this->url('Forum:Admin:Post@editAction', $post->getId()),
-                    $this->translate('Edit this post')
-                );
-            },
-
-            'remove' => function($post){
-                return Icon::remove(
-                    $this->url('Forum:Admin:Post@deleteAction', $post->getId()),
-                    $this->translate('Remove this post')
-                );
-            }
-        )
-    ))); ?>
-
-    <?php if (empty($posts)): ?>
-    <div class="center-block">
-        <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No posts'); ?></h2>
+        <?php if (empty($posts)): ?>
+        <div class="center-block">
+            <h2 class="text-center text-muted"><i class="glyphicon glyphicon-remove"></i> <?php $this->show('No posts'); ?></h2>
+        </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
+
 </div>
