@@ -8,10 +8,15 @@ defined('KRYSTAL') or die;
 
 ?>
 
-<p>
-    <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Category@addAction'); ?>"><?php $this->show('Add category'); ?></a>
-    <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Topic@addAction'); ?>"><?php $this->show('Add new topic'); ?></a>
-</p>
+<div class="btn-toolbar">
+    <div class="btn-group mr-3">
+        <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Category@addAction'); ?>"><?php $this->show('Add category'); ?></a>
+    </div>
+
+    <div class="btn-group mr-3">
+        <a class="btn btn-primary" href="<?= $this->url('Forum:Admin:Topic@addAction'); ?>"><?php $this->show('Add new topic'); ?></a>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-lg-7">
@@ -76,7 +81,7 @@ defined('KRYSTAL') or die;
             <h2><?php $this->show('Categories'); ?> <small>(<?= count($categories); ?>)</small></h2>
 
             <?= $this->widget(new GridViewWidget($categories, array(
-                'tableClass' => 'table table-hover table-bordered table-striped',
+                'tableClass' => 'table table-hover table-bordered table-striped table-sm',
                 'columns' => array(
                     array(
                         'column' => 'id',
